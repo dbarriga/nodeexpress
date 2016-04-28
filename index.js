@@ -18,6 +18,7 @@ app.engine('hbs', engines.handlebars);
 app.set('views', './views');
 app.set('view engine', 'hbs');
 
+app.use('/profilepics', express.static('images'));
 app.get('/', function (req, res) {
     res.render('index', {users: users});
 });
@@ -34,7 +35,7 @@ app.get(/big.*/, function (req, res, next) {
 
 app.get('/:username', function(req, res) {
     var username = req.params.username;
-    res.send(username);
+    res.render('user', {username: username});
 });
 
 app.get('/yo', function (req, res) {
